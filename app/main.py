@@ -5,7 +5,7 @@ import uvicorn
 
 load_dotenv()
 from app.config import settings
-from app.routers import github, pipeline
+from app.routers import github, pipeline, cure
 app = FastAPI()
 
 origins = [settings.CLIENT_ORIGIN]
@@ -21,6 +21,7 @@ app.add_middleware(
 # app.include_router(auth.router, tags=["Authentication"], prefix="/api/auth"
 app.include_router(github.router, tags=["Github"], prefix="/api/github")
 app.include_router(pipeline.router, tags=["Pipeline"], prefix="/api/pipeline")
+app.include_router(cure.router, tags=["Cure"], prefix="/api/cure")
 
 @app.get("/health")
 async def root():
